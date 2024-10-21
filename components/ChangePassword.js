@@ -29,11 +29,10 @@ const ChangePassword = ({ closeModal }) => {
             )
             setCredentials(updatedCredentials)
             alert("密码修改成功！")
-        } 
-        if (!newPassword){
-            alert("请输入新密码。")
         }
-        else {
+        if (!newPassword) {
+            alert("请输入新密码。")
+        } else {
             alert("旧密码不正确，请重试。")
         }
     }
@@ -50,7 +49,7 @@ const ChangePassword = ({ closeModal }) => {
                 <button
                     className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                     onClick={closeModal}
-                    style={{ fontSize: '24px' }}
+                    style={{ fontSize: "24px" }}
                 >
                     &times;
                 </button>
@@ -70,9 +69,12 @@ const ChangePassword = ({ closeModal }) => {
                     onChange={(e) => setNewPassword(e.target.value)}
                     className="w-2/3 h-8 bg-gray-200 border rounded-lg p-2"
                 />
-                <button 
-                className="w-16 bg-mypurple100 border rounded-lg p-2"
-                onClick={handleChangePassword}>提交</button>
+                <button
+                    className="w-16 bg-mypurple100 border rounded-lg p-2"
+                    onClick={handleChangePassword}
+                >
+                    提交
+                </button>
             </div>
         </div>
     )
