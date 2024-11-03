@@ -29,7 +29,7 @@ body {
   left: 0;
   width: 100vw; 
   height: 100vh; 
-  background-image: url('/images/bg.png'); 
+  background-image: url('/public/images/bg.png'); 
   background-size: 100% 100%; 
   background-position: center; 
   background-repeat: no-repeat; 
@@ -52,7 +52,7 @@ a:hover {
 
 .homepage-bg {
     position: fixed;
-    background-image: url("../images/bg.png");
+    background-image: url("/public/images/bg.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
