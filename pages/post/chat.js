@@ -20,15 +20,19 @@ const Chat = () => {
     const handleSubmit = () => {
         // 调用后端 API
         const newMessage = { type: "input", text: inputData }
-        fetch("http://localhost:3001/api/simulate", {
+        console.log("Sending message:", inputData);
+        fetch("http://10.120.1.91:3001/api/message", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ input: inputData }),
         })
-            .then((response) => response.json())
+            .then((response) => {
+                console.log("Response received:", response); 
+                response.json()})
             .then((data) => {
+                console.log("Data from backend:", data); 
                 const outputMessage = { type: "output", text: data.output }
                 setMessages((prevMessages) => [
                     ...prevMessages,
