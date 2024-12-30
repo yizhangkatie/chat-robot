@@ -10,8 +10,10 @@ const Chat = () => {
     }
 
     const [inputData, setInputData] = useState("")
+    const [input,setInput] = useState("")
     const [messages, setMessages] = useState([])
     const messageEndRef = useRef(null)
+    
 
     const handleInputChange = (e) => {
         setInputData(e.target.value)
@@ -20,26 +22,33 @@ const Chat = () => {
     const handleSubmit = () => {
         // 调用后端 API
         const newMessage = { type: "input", text: inputData }
+        const input = newMessage.text
         console.log("Sending message:", inputData);
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            newMessage,
+            { type: "output", text: "" } 
+        ]);
+        setInputData("")
         fetch("http://127.0.0.1:5000/api/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ message: inputData }),
+            body: JSON.stringify({ message: input }),
         })
             .then((response) => {
                 console.log("Response received:", response); 
+                
                 return response.json()})
             .then((data) => {
-                console.log("Data from backend:", data); 
                 const outputMessage = { type: "output", text: data.response }
-                setMessages((prevMessages) => [
-                    ...prevMessages,
-                    newMessage,
-                    outputMessage,
-                ])
-                setInputData("")
+                console.log("dataResonse:",data.response)
+                setMessages((prevMessages) => {
+                    const updatedMessages = [...prevMessages];
+                    updatedMessages[updatedMessages.length - 1] = outputMessage; // 替换最后一个空的 output 消息
+                    return updatedMessages;
+                });
             })
             .catch((error) => {
                 console.error("Error:", error)
@@ -93,6 +102,7 @@ const Chat = () => {
                                         <TypingEffectMessage
                                             text={message.text}
                                         />
+                                        
                                     )}
                                 </div>
                             ))}
