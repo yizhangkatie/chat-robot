@@ -21,8 +21,8 @@ body {
     line-height: 1.6;
     font-size: 18px;
 }
-
-/* body::before {
+/* 
+body::before {
   content: '';
   position: fixed; 
   top: 0;
@@ -52,7 +52,7 @@ a:hover {
 
 .homepage-bg {
     position: fixed;
-    background-image: url("/public/images/bg.png");
+    background-image: url("/images/bg.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;

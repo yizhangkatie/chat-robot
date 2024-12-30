@@ -21,19 +21,19 @@ const Chat = () => {
         // 调用后端 API
         const newMessage = { type: "input", text: inputData }
         console.log("Sending message:", inputData);
-        fetch("http://10.120.1.91:3001/api/message", {
+        fetch("http://127.0.0.1:5000/api/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ input: inputData }),
+            body: JSON.stringify({ message: inputData }),
         })
             .then((response) => {
                 console.log("Response received:", response); 
-                response.json()})
+                return response.json()})
             .then((data) => {
                 console.log("Data from backend:", data); 
-                const outputMessage = { type: "output", text: data.output }
+                const outputMessage = { type: "output", text: data.response }
                 setMessages((prevMessages) => [
                     ...prevMessages,
                     newMessage,
